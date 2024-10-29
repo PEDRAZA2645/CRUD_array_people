@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Person } from "./Person";
+import Person  from "./Person";
 import { useState } from "react";
 
 export const People = ({ people, setPeople }) => {
@@ -13,7 +13,7 @@ export const People = ({ people, setPeople }) => {
   // Estado para almacenar temporalmente los datos de la persona que se está editando
   const [editedPerson, setEditedPerson] = useState(
     {
-      name: '',
+      personName: '',
       role: '',
       img: ''
     }
@@ -39,7 +39,7 @@ export const People = ({ people, setPeople }) => {
     setPeople([...people, { id: people.length + 1, ...editedPerson }]);
 
     // Reiniciar el estado del formulario 
-    setEditedPerson({ name: '', role: '', img: '' });
+    setEditedPerson({ personName: '', role: '', img: '' });
   };
 
   // Método para editar a una persona
@@ -69,7 +69,7 @@ export const People = ({ people, setPeople }) => {
     setEditingId(null);
 
     setEditedPerson({
-      name: '',
+      personName: '',
       role: '',
       img: ''
     });
@@ -108,7 +108,7 @@ export const People = ({ people, setPeople }) => {
                 <div key={people.id}>
                   <Person
                     id={people.id}
-                    name={people.name}
+                    personName={people.personName}
                     img={people.img}
                     role={people.role}
                     handleEdit={() => handleEdit(people.id)}
@@ -125,8 +125,8 @@ export const People = ({ people, setPeople }) => {
         <h2 className='text-center mt-4' > {isEditing ? 'Actualizar Empleado' : 'Crear Nuevo Empleado'} </h2>
         <form>
           <div>
-            <label htmlFor="name">Nombres</label>
-            <input type="text" name="name" value={editedPerson.name} onChange={handleChange} required className="form-control" />
+            <label htmlFor="personName">Nombres</label>
+            <input type="text" name="personName" value={editedPerson.personName} onChange={handleChange} required className="form-control" />
           </div>
           <div>
             <label htmlFor="role">Rol</label>
@@ -150,7 +150,7 @@ export const People = ({ people, setPeople }) => {
               <button type="button" className="btn-close" data-bs-dismiss="modal" onClick={cancelDelete}></button>
             </div>
             <div className="modal-body">
-              <p>¿Estás seguro de eliminar a {people.find(person => person.id === personToDelete)?.name} ?</p>
+              <p>¿Estás seguro de eliminar a {people.find(person => person.id === personToDelete)?.personName} ?</p>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={cancelDelete}>Cancelar</button>
